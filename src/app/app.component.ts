@@ -12,7 +12,9 @@ export class AppComponent {
   errorDelayValue:boolean = false;
   // fragment:any = document.createDocumentFragment();
   timer:any;
-  prevId:number = 1; //?
+
+  currentId: number = 1;
+  prevId:number = -1; //?
 
   cellcounts: number = 100;
   finishcount: number = 10;
@@ -38,19 +40,30 @@ export class AppComponent {
     // this.eventsListeners();
     }
 
-    console.log(this.objOfCells)
+    //console.log(this.objOfCells)
   }
 
 
   /**
    * Method for create object
    */
+
+
   createObj(id: number) {
-    let obj:any = {};
-    obj.id = id;
-    obj.success = false;
-    obj.error = false;
-    this.objOfCells[id] = {obj};
+    /*interface cellObj {
+      id: number;
+      success: boolean;
+      error : boolean
+    }
+    */
+
+    const obj:any = {
+      id: id,
+      success: false,
+      error:  false    
+    };
+
+    this.objOfCells[id] = obj;
   }
 
   // start game
@@ -63,14 +76,20 @@ export class AppComponent {
       // starting position
       const arr:any = Object.entries(this.objOfCells);
       const rnd:number = this.randomInteger(arr.length - 1);
-      const id:number = arr[rnd][1].id;
+      const idx:number = arr[rnd][1].id;
+      
 
       //document.querySelector(".btn-start").classList.add("d-none");
+
       // set active cell
+      this.currentId = idx;
      // document.querySelector(`[data-id="${id}"]`).classList.add("cell-active");
 
+
+     console.log(arr[rnd][1]);
       // start timer
-      this.prevId = id;
+      this.prevId = idx;
+      
       this.timer = setInterval(this.blinkCell.bind(this), this.delayValue);
       this.start = true;
       this.errorDelayValue = false;
@@ -103,7 +122,7 @@ export class AppComponent {
     //   clearInterval(this.timer);
     //   return false;
     // }
-    // return true;
+     return true;
   }
 
   // update num of Count Elements in HTML
@@ -121,37 +140,35 @@ export class AppComponent {
 
   // blink cell
   blinkCell() {
-    console.log('blinkCell');
-
-        // //  if cell was active and no pressed it
-        // if (!this.clickCellFlag) {
-        //   document.querySelector(".cell-active").classList.add("cell-error");
-        //   document.querySelector(".cell-active").classList.remove("cell-active");
-        //   this.updateStatusCellInObj(this.#prevId, "error");
-        // }
+        //  if cell was active and no pressed it
+        if (!this.clickCellFlag) {
+          //document.querySelector(".cell-active").classList.add("cell-error");
+          //document.querySelector(".cell-active").classList.remove("cell-active");
+          this.updateStatusCellInObj(this.prevId, "error");
+        }
     
-        // const arr: any = Object.entries(this.#objOfCells).filter(
-        //   (el) => el[1].error == false && el[1].success == false
-        // );
+        const arr: any = Object.entries(this.objOfCells).filter(
+          (el
+            :any) => el[1].error == false && el[1].success == false
+        );
     
-        // if (arr.length === 0 || !this.checkResult()) {
-        //   clearInterval(this.timer);
-        //   return;
-        // }
+        if (arr.length === 0 || !this.checkResult()) {
+          clearInterval(this.timer);
+          return;
+        }
     
-        // // select random element from array
-        // const rnd: number = this.randomInteger(arr.length - 1);
-        // const id: number = arr[rnd][1].id;
+        // select random element from array
+        const rnd: number = this.randomInteger(arr.length - 1);
+        const id: number = arr[rnd][1].id;
     
-        // this.prevId = id;
-        // if (this.countError < this.finishcount && this.countSuccess < this.finishcount) {
-        //   // set active next cell in html
-        //   document.querySelector(`[data-id="${id}"]`).classList.add("cell-active");
-        // }
+        this.prevId = id;
+        if (this.countError < this.finishcount && this.countSuccess < this.finishcount) {
+          // set active next cell in html
+          this.currentId = id;
+          //document.querySelector(`[data-id="${id}"]`).classList.add("cell-active");
+        }
     
-        // this.clickCellFlag = false;
-
-
+        this.clickCellFlag = false;
   }
 
 
@@ -175,7 +192,8 @@ export class AppComponent {
     }
 
     // update status Cell in Object
-  updateStatusCellInObj(id:number, key:number) {
+  updateStatusCellInObj(id:number, key:string) {
+    console.log(id, key);
     this.objOfCells[id][key] = true;
   }
 

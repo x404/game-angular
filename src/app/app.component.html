@@ -1,10 +1,11 @@
-    <div id="app">
+    <div id="app"> 
+        
       <div class="content">
         <div class="d-flex flex-wrap list">
-          <div class="cell" 
-            
+          <div
             *ngFor="let item of objOfCells | keyvalue"
-            [className]="item.key == 2 ? 'cell cell-active' : 'cell' "
+            [attr.data-id] = "item.key"
+            [className]="item.key == currentId ? 'cell cell-active' : 'cell' "
           ></div>
         </div>
 
