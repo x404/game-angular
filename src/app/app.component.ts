@@ -7,12 +7,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   objOfCells:any = {};
-  // clickCellFlag:boolean = false;
+  clickCellFlag:boolean = false;
   start:boolean = false;
   errorDelayValue:boolean = false;
   // fragment:any = document.createDocumentFragment();
   timer:any;
-  prevId:number = -1; //?
+  prevId:number = 1; //?
 
   cellcounts: number = 100;
   finishcount: number = 10;
@@ -37,6 +37,8 @@ export class AppComponent {
     // this.gameDiv.appendChild(this.#fragment);
     // this.eventsListeners();
     }
+
+    console.log(this.objOfCells)
   }
 
 
@@ -60,8 +62,8 @@ export class AppComponent {
       }
       // starting position
       const arr:any = Object.entries(this.objOfCells);
-      const rnd = this.randomInteger(arr.length - 1);
-      const id = arr[rnd][1].id;
+      const rnd:number = this.randomInteger(arr.length - 1);
+      const id:number = arr[rnd][1].id;
 
       //document.querySelector(".btn-start").classList.add("d-none");
       // set active cell
@@ -81,6 +83,29 @@ export class AppComponent {
     }
   }
 
+  // check data (success and error cells) in Object
+  checkResult() {
+    // this.countSuccess = Object.entries(this.objOfCells).filter(
+    //   (el) => el[1].success == true
+    // ).length;
+    // this.countError = Object.entries(this.objOfCells).filter((el) => el[1].error == true).length;
+
+    // this.updateCountElements(this.countSuccess, this.countError);
+
+    // if (this.countSuccess == this.finishcount || this.countError == this.finishcount) {
+    //   console.log("%c- STOP GAME -", "color: red;font-weight:bold");
+    //   // console.log(this.#objOfCells);
+
+    //   console.log('.. here show Modal');
+    //   //const newModal = new Modal(this.countSuccess, this.countError);
+    //   //newModal.show();
+
+    //   clearInterval(this.timer);
+    //   return false;
+    // }
+    // return true;
+  }
+
   // update num of Count Elements in HTML
   updateCountElements(countSuccess:number, countError: number) {
     console.log('updateCountElements');
@@ -96,7 +121,62 @@ export class AppComponent {
 
   // blink cell
   blinkCell() {
-    console.log('blinkCell')
+    console.log('blinkCell');
+
+        // //  if cell was active and no pressed it
+        // if (!this.clickCellFlag) {
+        //   document.querySelector(".cell-active").classList.add("cell-error");
+        //   document.querySelector(".cell-active").classList.remove("cell-active");
+        //   this.updateStatusCellInObj(this.#prevId, "error");
+        // }
+    
+        // const arr: any = Object.entries(this.#objOfCells).filter(
+        //   (el) => el[1].error == false && el[1].success == false
+        // );
+    
+        // if (arr.length === 0 || !this.checkResult()) {
+        //   clearInterval(this.timer);
+        //   return;
+        // }
+    
+        // // select random element from array
+        // const rnd: number = this.randomInteger(arr.length - 1);
+        // const id: number = arr[rnd][1].id;
+    
+        // this.prevId = id;
+        // if (this.countError < this.finishcount && this.countSuccess < this.finishcount) {
+        //   // set active next cell in html
+        //   document.querySelector(`[data-id="${id}"]`).classList.add("cell-active");
+        // }
+    
+        // this.clickCellFlag = false;
+
+
+  }
+
+
+    // update Status Cell in Grid and update status in Object
+    updateCell() {
+      // const target = e.target;
+      // if (target.classList.contains("cell-active")) {
+      //   const id = target.dataset.id;
+      //   this.clickCellFlag = true;
+      //   this.updateStatusCellInObj(id, "success");
+  
+      //   if (this.checkResult()) {
+      //     clearInterval(this.timer);
+      //     this.blinkCell();
+      //     this.timer = setInterval(this.blinkCell.bind(this), this.timeout);
+      //   }
+  
+      //   target.classList.remove("cell-active");
+      //   target.classList.add("cell-success");
+      // }
+    }
+
+    // update status Cell in Object
+  updateStatusCellInObj(id:number, key:number) {
+    this.objOfCells[id][key] = true;
   }
 
   reset(){
@@ -121,6 +201,6 @@ export class AppComponent {
     this.countSuccess = 0;
     this.countError = 0;
 
-    this.updateCountElements(this.countSuccess, this.countError);
+    //this.updateCountElements(this.countSuccess, this.countError);
   }
 }

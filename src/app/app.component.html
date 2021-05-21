@@ -1,14 +1,18 @@
     <div id="app">
       <div class="content">
         <div class="d-flex flex-wrap list">
-          <div class="cell" data-id="{{item.key}}" *ngFor="let item of objOfCells | keyvalue"></div>
+          <div class="cell" 
+            
+            *ngFor="let item of objOfCells | keyvalue"
+            [className]="item.key == 2 ? 'cell cell-active' : 'cell' "
+          ></div>
         </div>
 
         <div>
           <label for="delay">Задержка, мс</label>
           <input type="number" id="delay" class="form-control i-delay" value="{{delayValue}}" min="0" />
         </div>
-        <button type="button" class="btn-start" (click)="startGame()">Начать</button>
+        <button type="button" class="btn-start" (click)="startGame()" *ngIf="!start">Начать</button>
 
         <app-score [countSuccess]="countSuccess" [countError]="countError"></app-score>
       </div>

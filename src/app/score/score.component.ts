@@ -15,6 +15,4 @@ export class ScoreComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  
-
 }
