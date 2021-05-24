@@ -47,8 +47,6 @@ export class AppComponent {
   /**
    * Method for create object
    */
-
-
   createObj(id: number) {
     /*interface cellObj {
       id: number;
@@ -104,24 +102,25 @@ export class AppComponent {
 
   // check data (success and error cells) in Object
   checkResult() {
-    // this.countSuccess = Object.entries(this.objOfCells).filter(
-    //   (el) => el[1].success == true
-    // ).length;
-    // this.countError = Object.entries(this.objOfCells).filter((el) => el[1].error == true).length;
+    //console.log('check result')
+    this.countSuccess = Object.entries(this.objOfCells).filter(
+      (el: any) => el[1].success == true
+    ).length;
+    this.countError = Object.entries(this.objOfCells).filter((el: any) => el[1].error == true).length;
 
-    // this.updateCountElements(this.countSuccess, this.countError);
+    this.updateCountElements(this.countSuccess, this.countError);
 
-    // if (this.countSuccess == this.finishcount || this.countError == this.finishcount) {
-    //   console.log("%c- STOP GAME -", "color: red;font-weight:bold");
-    //   // console.log(this.#objOfCells);
+    if (this.countSuccess == this.finishcount || this.countError == this.finishcount) {
+      console.log("%c- STOP GAME -", "color: red;font-weight:bold");
+      // console.log(this.#objOfCells);
 
-    //   console.log('.. here show Modal');
-    //   //const newModal = new Modal(this.countSuccess, this.countError);
-    //   //newModal.show();
+      console.log('.. here show Modal');
+      //const newModal = new Modal(this.countSuccess, this.countError);
+      //newModal.show();
 
-    //   clearInterval(this.timer);
-    //   return false;
-    // }
+      clearInterval(this.timer);
+      return false;
+    }
      return true;
   }
 
@@ -142,14 +141,15 @@ export class AppComponent {
   blinkCell() {
         //  if cell was active and no pressed it
         if (!this.clickCellFlag) {
+          console.log('error');
           //document.querySelector(".cell-active").classList.add("cell-error");
           //document.querySelector(".cell-active").classList.remove("cell-active");
+          
           this.updateStatusCellInObj(this.prevId, "error");
         }
     
         const arr: any = Object.entries(this.objOfCells).filter(
-          (el
-            :any) => el[1].error == false && el[1].success == false
+          (el: any) => el[1].error == false && el[1].success == false
         );
     
         if (arr.length === 0 || !this.checkResult()) {
@@ -167,7 +167,7 @@ export class AppComponent {
           this.currentId = id;
           //document.querySelector(`[data-id="${id}"]`).classList.add("cell-active");
         }
-    
+
         this.clickCellFlag = false;
   }
 
@@ -193,7 +193,7 @@ export class AppComponent {
 
     // update status Cell in Object
   updateStatusCellInObj(id:number, key:string): void {
-    console.log(id, key);
+    //console.log(id, key);
     this.objOfCells[id][key] = true;
   }
 
