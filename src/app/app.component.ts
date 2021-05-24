@@ -10,7 +10,7 @@ export class AppComponent {
   clickCellFlag:boolean = false;
   start:boolean = false;
   errorDelayValue:boolean = false;
-  // fragment:any = document.createDocumentFragment();
+  
   timer:any;
 
   currentId: number = -1;
@@ -19,10 +19,9 @@ export class AppComponent {
   cellcounts: number = 100;
   finishcount: number = 10;
   delayValue: number = 2000;
-  // timeoutEl: any = document.querySelector(".i-delay");
+  
   gameDiv: any = document.querySelector(".list");
-  // userCountEl: any = document.querySelector("#user_count");
-  // computerCountEl:any = document.querySelector("#computer_count");
+  
   countSuccess:number = 0;
   countError:number = 0;
 
@@ -36,7 +35,6 @@ export class AppComponent {
       for (let i = 1; i <= this.cellcounts; i++) {
        this.createObj(i);
       }
-    // this.gameDiv.appendChild(this.#fragment);
     // this.eventsListeners();
     }
 
@@ -76,13 +74,9 @@ export class AppComponent {
       const rnd:number = this.randomInteger(arr.length - 1);
       const idx:number = arr[rnd][1].id;
 
-      //document.querySelector(".btn-start").classList.add("d-none");
-
       // set active cell
       this.currentId = idx;
-     // document.querySelector(`[data-id="${id}"]`).classList.add("cell-active");
 
-     //console.log(arr[rnd][1]);
       // start timer
       this.prevId = idx;
       
@@ -106,11 +100,8 @@ export class AppComponent {
     ).length;
     this.countError = Object.entries(this.objOfCells).filter((el: any) => el[1].error == true).length;
 
-    this.updateCountElements(this.countSuccess, this.countError);
-
     if (this.countSuccess == this.finishcount || this.countError == this.finishcount) {
       console.log("%c- STOP GAME -", "color: red;font-weight:bold");
-      // console.log(this.#objOfCells);
 
       console.log('.. here show Modal');
       //const newModal = new Modal(this.countSuccess, this.countError);
@@ -120,13 +111,6 @@ export class AppComponent {
       return false;
     }
      return true;
-  }
-
-  // update num of Count Elements in HTML
-  updateCountElements(countSuccess:number, countError: number) {
-   // console.log('updateCountElements');
-  //    this.userCountEl.textContent = countSuccess;
-  //    this.computerCountEl.textContent = countError;
   }
 
   // random number
@@ -140,9 +124,6 @@ export class AppComponent {
         //  if cell was active and no pressed it
         if (!this.clickCellFlag) {
           //console.log('error');
-          //document.querySelector(".cell-active").classList.add("cell-error");
-          //document.querySelector(".cell-active").classList.remove("cell-active");
-          
           this.updateStatusCellInObj(this.prevId, "error");
         }
     
@@ -163,43 +144,24 @@ export class AppComponent {
         if (this.countError < this.finishcount && this.countSuccess < this.finishcount) {
           // set active next cell in html
           this.currentId = id;
-          //document.querySelector(`[data-id="${id}"]`).classList.add("cell-active");
         }
 
         this.clickCellFlag = false;
   }
 
 
-    // update Status Cell in Grid and update status in Object
-    updateCell(id : any) {
-      console.log('Your click', id);
-
-      this.clickCellFlag = true;
-      this.updateStatusCellInObj(id, "success");       
-        if (this.checkResult()) {
-          clearInterval(this.timer);
-          this.blinkCell();
-          //this.timer = setInterval(this.blinkCell.bind(this), this.timeout);
-        }
-
-      // const target = e.target;
-      // if (target.classList.contains("cell-active")) {
-      //   const id = target.dataset.id;
-      //   this.clickCellFlag = true;
-      //   this.updateStatusCellInObj(id, "success");
-  
-      //   if (this.checkResult()) {
-      //     clearInterval(this.timer);
-      //     this.blinkCell();
-      //     this.timer = setInterval(this.blinkCell.bind(this), this.timeout);
-      //   }
-  
-      //   target.classList.remove("cell-active");
-      //   target.classList.add("cell-success");
-      // }
+  // update Status Cell in Grid and update status in Object
+  updateCell(id : any) {
+    this.clickCellFlag = true;
+    this.updateStatusCellInObj(+id, "success");       
+    if (this.checkResult()) {
+      clearInterval(this.timer);
+      this.blinkCell();
+      this.timer = setInterval(this.blinkCell.bind(this), this.delayValue);
     }
+  }
 
-    // update status Cell in Object
+  // update status Cell in Object
   updateStatusCellInObj(id:number, key:string): void {
     //console.log(id, key);
     this.objOfCells[id][key] = true;
@@ -222,11 +184,8 @@ export class AppComponent {
         el.classList.remove("cell-success");
       });
     }
-    //this.prevId = null;
     this.prevId = -1;
     this.countSuccess = 0;
     this.countError = 0;
-
-    //this.updateCountElements(this.countSuccess, this.countError);
   }
 }
