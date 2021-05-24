@@ -3,11 +3,13 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { ScoreComponent } from './score/score.component';
+import { ErrorValuesPipe } from './pipes/error-values.pipe'
 
 @NgModule({
   declarations: [
     AppComponent,
-    ScoreComponent
+    ScoreComponent,
+    ErrorValuesPipe
   ],
   imports: [
     BrowserModule
