@@ -13,7 +13,7 @@ export class AppComponent {
   // fragment:any = document.createDocumentFragment();
   timer:any;
 
-  currentId: number = 1;
+  currentId: number = -1;
   prevId:number = -1; //?
 
   cellcounts: number = 100;
@@ -84,7 +84,7 @@ export class AppComponent {
      // document.querySelector(`[data-id="${id}"]`).classList.add("cell-active");
 
 
-     console.log(arr[rnd][1]);
+     //console.log(arr[rnd][1]);
       // start timer
       this.prevId = idx;
       
@@ -126,7 +126,7 @@ export class AppComponent {
 
   // update num of Count Elements in HTML
   updateCountElements(countSuccess:number, countError: number) {
-    console.log('updateCountElements');
+   // console.log('updateCountElements');
   //    this.userCountEl.textContent = countSuccess;
   //    this.computerCountEl.textContent = countError;
   }
@@ -141,7 +141,7 @@ export class AppComponent {
   blinkCell() {
         //  if cell was active and no pressed it
         if (!this.clickCellFlag) {
-          console.log('error');
+          //console.log('error');
           //document.querySelector(".cell-active").classList.add("cell-error");
           //document.querySelector(".cell-active").classList.remove("cell-active");
           
