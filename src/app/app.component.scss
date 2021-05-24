@@ -2,19 +2,13 @@
   box-sizing: border-box;
 }
 
-:root {
+::ng-deep :root {
   --s: 50px;
   --borderColor: #bfbfbf;
   --activeColor: #f3f331;
   --successColor: green;
   --errorColor: red;
 }
-
-$s: 50px;
-$borderColor: #bfbfbf;
-$activeColor: #f3f331;
-$successColor: green;
-$errorColor: red;
 
 p {
   margin: 0;
@@ -40,32 +34,32 @@ p {
 /* =CELLS */
 .cell {
   background-color: #498fbd;
-  border-bottom: 1px solid $borderColor;
-  border-right: 1px solid $borderColor;
+  border-bottom: 1px solid var(--borderColor);
+  border-right: 1px solid var(--borderColor);
   transition: background-color 0.3s;
-  height: $s;
-  width: $s;
+  height: var(--s);
+  width: var(--s);
 }
 
 .cell:nth-child(10n + 1) {
-  border-left: 1px solid $borderColor;
+  border-left: 1px solid var(--borderColor);
 }
 
 .cell:nth-child(-n + 10) {
-  border-top: 1px solid $borderColor;
+  border-top: 1px solid var(--borderColor);
 }
 
 .cell-active {
-  background-color: $activeColor;
+  background-color: var(--activeColor);
   cursor: pointer;
 }
 
 .cell-success {
-  background-color: $successColor;
+  background-color: var(--successColor);
 }
 
 .cell-error {
-  background-color: $errorColor;
+  background-color: var(--errorColor);
 }
 /* =/CELLS */
 

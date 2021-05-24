@@ -67,7 +67,7 @@ export class AppComponent {
   }
 
   // start game
-  startGame() {
+  startGame() : void {
     if (this.delayValue > 0) {
       if (this.start) this.reset();
       if (this.errorDelayValue && document.querySelectorAll(".error").length > 0) {
@@ -192,12 +192,12 @@ export class AppComponent {
     }
 
     // update status Cell in Object
-  updateStatusCellInObj(id:number, key:string) {
+  updateStatusCellInObj(id:number, key:string): void {
     console.log(id, key);
     this.objOfCells[id][key] = true;
   }
 
-  reset(){
+  reset(): void{
     for (let key in this.objOfCells) {
       this.objOfCells[key].success = false;
       this.objOfCells[key].error = false;
