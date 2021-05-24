@@ -2,7 +2,7 @@
   box-sizing: border-box;
 }
 
-::ng-deep :root {
+:host {
   --s: 50px;
   --borderColor: #bfbfbf;
   --activeColor: #f3f331;
@@ -10,9 +10,11 @@
   --errorColor: red;
 }
 
-p {
+/*
+::ng-deep p {
   margin: 0;
 }
+*/
 
 .d-none {
   display: none;
