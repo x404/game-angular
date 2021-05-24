@@ -18,7 +18,7 @@ export class AppComponent {
 
   cellcounts: number = 100;
   finishcount: number = 10;
-  delayValue: number = 1000;
+  delayValue: number = 2000;
   // timeoutEl: any = document.querySelector(".i-delay");
   gameDiv: any = document.querySelector(".list");
   // userCountEl: any = document.querySelector("#user_count");
@@ -75,14 +75,12 @@ export class AppComponent {
       const arr:any = Object.entries(this.objOfCells);
       const rnd:number = this.randomInteger(arr.length - 1);
       const idx:number = arr[rnd][1].id;
-      
 
       //document.querySelector(".btn-start").classList.add("d-none");
 
       // set active cell
       this.currentId = idx;
      // document.querySelector(`[data-id="${id}"]`).classList.add("cell-active");
-
 
      //console.log(arr[rnd][1]);
       // start timer
@@ -173,7 +171,17 @@ export class AppComponent {
 
 
     // update Status Cell in Grid and update status in Object
-    updateCell() {
+    updateCell(id : any) {
+      console.log('Your click', id);
+
+      this.clickCellFlag = true;
+      this.updateStatusCellInObj(id, "success");       
+        if (this.checkResult()) {
+          clearInterval(this.timer);
+          this.blinkCell();
+          //this.timer = setInterval(this.blinkCell.bind(this), this.timeout);
+        }
+
       // const target = e.target;
       // if (target.classList.contains("cell-active")) {
       //   const id = target.dataset.id;

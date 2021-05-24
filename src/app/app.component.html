@@ -9,10 +9,13 @@
             [ngClass]="{
               'cell': true,
               'cell-active' : item.key == currentId,
-              'cell-error'  : item.value | errorvalue
+              'cell-error'  : item.value | errorvalue,
+              'cell-success': item.value | successvalue
             }"
+
+            (click)="item.key == currentId && updateCell(item.key)"
           >
-          {{item.value | errorvalue}}
+          {{item.key}}
           </div>
         </div>
 
