@@ -19,7 +19,7 @@
 
     <div>
       <label for="delay">Задержка, мс</label>
-      <input type="number" id="delay" class="form-control i-delay" value="{{delayValue}}" min="0" />
+      <input type="number" id="delay" class="form-control i-delay" [(ngModel)]="delayValue" min="0" />
     </div>
     <button type="button" class="btn-start" (click)="startGame()" *ngIf="!start">Начать</button>
 

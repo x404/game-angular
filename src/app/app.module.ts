@@ -6,6 +6,7 @@ import { ScoreComponent } from './score/score.component';
 import { ErrorValuesPipe } from './pipes/error-values.pipe'
 import { SuccessValuesPipe } from './pipes/success-values.pipe';
 import { ModalComponent } from './modal/modal.component'
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,7 @@ import { ModalComponent } from './modal/modal.component'
     ModalComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule, FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
