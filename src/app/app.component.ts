@@ -66,9 +66,7 @@ export class AppComponent {
   startGame() : void {
     if (this.delayValue > 0) {
       if (this.start) this.reset();
-      if (this.errorDelayValue && document.querySelectorAll(".error").length > 0) {
-       // document.querySelector(".error").remove();
-      }
+
       // starting position
       const arr:any = Object.entries(this.objOfCells);
       const rnd:number = this.randomInteger(arr.length - 1);
@@ -83,11 +81,7 @@ export class AppComponent {
       this.timer = setInterval(this.blinkCell.bind(this), this.delayValue);
       this.start = true;
       this.errorDelayValue = false;
-    } else if (!this.errorDelayValue) {
-      this.gameDiv.insertAdjacentHTML(
-        "beforeend",
-        '<p class="error">Введите число больше нуля!</p>'
-      );
+    } else {
       this.errorDelayValue = true;
     }
   }

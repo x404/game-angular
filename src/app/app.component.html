@@ -16,10 +16,10 @@
       {{item.key}}
       </div>
     </div>
-
+    <p class="error" *ngIf="errorDelayValue">Введите число больше нуля!</p>
     <div>
       <label for="delay">Задержка, мс</label>
-      <input type="number" id="delay" class="form-control i-delay" [(ngModel)]="delayValue" min="0" />
+      <input type="number" id="delay" class="form-control i-delay" min="0" [(ngModel)]="delayValue" oninput="this.value < 0 ? this.value = this.value.slice(1) : '' "/>
     </div>
     <button type="button" class="btn-start" (click)="startGame()" *ngIf="!start">Начать</button>
 
