@@ -53,7 +53,7 @@ export class AppComponent {
     }
     */
 
-    const obj:any = {
+    const obj: { id: number; success: boolean; error: boolean} = {
       id: id,
       success: false,
       error:  false    
