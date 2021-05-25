@@ -37,9 +37,7 @@ export class AppComponent {
       for (let i = 1; i <= this.cellcounts; i++) {
        this.createObj(i);
       }
-    // this.eventsListeners();
     }
-
     //console.log(this.objOfCells)
   }
 

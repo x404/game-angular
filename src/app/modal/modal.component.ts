@@ -18,7 +18,6 @@ export class ModalComponent implements OnInit, OnChanges{
   @Input() countError : number = 0;
 
   constructor() { 
-    console.log('modal')
   }
 
   ngOnInit() {
