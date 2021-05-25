@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, Output, EventEmitter, OnChanges} from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter, OnChanges, HostListener} from '@angular/core';
  
 @Component({
   selector: 'app-modal',
@@ -6,7 +6,13 @@ import { Component, Input, OnInit, Output, EventEmitter, OnChanges} from '@angul
   styleUrls: ['./modal.component.scss']
 })
 export class ModalComponent implements OnInit, OnChanges{
- 
+
+  @HostListener('document:keydown', ['$event']) onKeydownHandler(event: KeyboardEvent) {
+    if (event.key === "Escape") {
+        this.closeModal()
+    }
+}
+
   @Output() onClose = new EventEmitter;
   data:{} = {isShowModal : false}
   closeModal(){
@@ -18,6 +24,7 @@ export class ModalComponent implements OnInit, OnChanges{
   @Input() countError : number = 0;
 
   constructor() { 
+
   }
 
   ngOnInit() {
@@ -30,4 +37,6 @@ export class ModalComponent implements OnInit, OnChanges{
      document.body.classList.remove("modal-open");
     }
   }
+
+
 }
