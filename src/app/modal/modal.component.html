@@ -1,4 +1,4 @@
-<ng-container *ngIf = "countError >= 10 || countSuccess >= 10">
+<ng-container *ngIf = "isShowModal">
     <div class="modal">
         <div class="modal-inner">
         <p class="title">Счет:</p>
@@ -6,7 +6,7 @@
             <div>Вы: {{countSuccess}}</div>
             <div>Компьютер: {{countError}}</div>
         </div>
-        <button type="button" class="close">x</button>
+        <button type="button" class="close" (click)="closeModal()">x</button>
         </div>
     </div>
     <div class="backdrop"></div>

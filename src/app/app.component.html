@@ -27,4 +27,10 @@
   </div>
 </div>
 
-<app-modal [countSuccess]="countSuccess" [countError]="countError" ></app-modal>
+<app-modal 
+  [countSuccess]="countSuccess" 
+  [countError]="countError" 
+  [isShowModal] = "isShowModal"
+  (onClose)="onCloseModal($event)"
+  >
+</app-modal>

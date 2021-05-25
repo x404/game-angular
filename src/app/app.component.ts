@@ -18,12 +18,14 @@ export class AppComponent {
 
   cellcounts: number = 100;
   finishcount: number = 10;
-  delayValue: number = 100;
+  delayValue: number = 10;
   
   gameDiv = <HTMLElement>document.querySelector(".list");
   
   countSuccess:number = 0;
   countError:number = 0;
+
+  isShowModal: boolean = false;
 
   constructor() {
     this.init()
@@ -92,6 +94,11 @@ export class AppComponent {
     }
   }
 
+  onCloseModal(data: any ){
+    this.isShowModal = data.isShowModal;
+    this.start = data.start;
+  }
+
   // check data (success and error cells) in Object
   checkResult() {
     //console.log('check result')
@@ -103,6 +110,7 @@ export class AppComponent {
     if (this.countSuccess >= this.finishcount || this.countError >= this.finishcount) {
       console.log("%c- STOP GAME -", "color: red;font-weight:bold");
       //console.log('.. here show Modal');
+      this.isShowModal = true;
       clearInterval(this.timer);
       return false;
     }
