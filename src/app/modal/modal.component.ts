@@ -8,7 +8,7 @@ import { Component, Input, OnInit, Output, EventEmitter, OnChanges} from '@angul
 export class ModalComponent implements OnInit, OnChanges{
  
   @Output() onClose = new EventEmitter;
-  data:{} = {start : false, isShowModal : false}
+  data:{} = {isShowModal : false}
   closeModal(){
     this.onClose.emit(this.data);
   }

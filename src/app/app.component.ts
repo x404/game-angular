@@ -94,7 +94,7 @@ export class AppComponent {
 
   onCloseModal(data: any ){
     this.isShowModal = data.isShowModal;
-    this.start = data.start;
+    this.reset()
   }
 
   // check data (success and error cells) in Object
@@ -175,19 +175,8 @@ export class AppComponent {
       this.objOfCells[key].error = false;
     }
 
-    if (document.querySelectorAll(".cell-error").length > 0) {
-      document.querySelectorAll(".cell-error").forEach((el) => {
-        el.classList.remove("cell-error");
-      });
-    }
-
-    if (document.querySelectorAll(".cell-success").length > 0) {
-      document.querySelectorAll(".cell-success").forEach((el) => {
-        el.classList.remove("cell-success");
-      });
-    }
-    this.prevId = -1;
-    this.countSuccess = 0;
-    this.countError = 0;
+    this.currentId = this.prevId = -1;
+    this.countSuccess = this.countError = 0;
+    this.start = false;
   }
 }
