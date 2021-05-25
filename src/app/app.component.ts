@@ -18,7 +18,7 @@ export class AppComponent {
 
   cellcounts  : number = 100;
   finishcount : number = 10;
-  delayValue  : number = 10;
+  delayValue  : number = 1200;
   countSuccess: number = 0;
   countError  : number = 0;  
   
