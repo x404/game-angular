@@ -1,3 +1,5 @@
+Link to online Game - (https://x404.github.io/game-angular/dist/game-angular/index.html)[https://x404.github.io/game-angular/dist/game-angular/index.html]
+
 # GameAngular
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.0.0.
