@@ -43,13 +43,6 @@ export class AppComponent {
    * Method for create object
    */
   createObj(id: number) {
-    /*interface cellObj {
-      id: number;
-      success: boolean;
-      error : boolean
-    }
-    */
-
     const obj: { id: number; success: boolean; error: boolean} = {
       id: id,
       success: false,
