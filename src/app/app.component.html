@@ -1,30 +1,27 @@
-<div id="app"> 
-  <div class="content">
-    <div class="d-flex flex-wrap list">
-      <div
-        *ngFor="let item of objOfCells | keyvalue"
-        [attr.data-id] = "item.key"
-        
-        [ngClass]="{
-          'cell': true,
-          'cell-active' : item.key == currentId,
-          'cell-error'  : item.value | errorvalue,
-          'cell-success': item.value | successvalue
-        }"
-        (click)="item.key == currentId && updateCell(item.key)"
-      >
-      {{item.key}}
-      </div>
+<div class="content">
+  <div class="d-flex flex-wrap list">
+    <div
+      *ngFor="let item of objOfCells | keyvalue"
+      [attr.data-id] = "item.key"
+      
+      [ngClass]="{
+        'cell': true,
+        'cell-active' : item.key == currentId,
+        'cell-error'  : item.value | errorvalue,
+        'cell-success': item.value | successvalue
+      }"
+      (click)="item.key == currentId && updateCell(item.key)"
+    >
     </div>
-    <p class="error" *ngIf="errorDelayValue">Введите число больше нуля!</p>
-    <div>
-      <label for="delay">Задержка, мс</label>
-      <input type="number" id="delay" class="form-control i-delay" min="0" [(ngModel)]="delayValue" oninput="this.value < 0 ? this.value = this.value.slice(1) : '' "/>
-    </div>
-    <button type="button" class="btn-start" (click)="startGame()" *ngIf="!start">Начать</button>
-
-    <app-score [countSuccess]="countSuccess" [countError]="countError"></app-score>
   </div>
+  <p class="error" *ngIf="errorDelayValue">Введите число больше нуля!</p>
+  <div>
+    <label for="delay">Задержка, мс</label>
+    <input type="number" id="delay" class="form-control i-delay" min="0" [(ngModel)]="delayValue" oninput="this.value < 0 ? this.value = this.value.slice(1) : '' "/>
+  </div>
+  <button type="button" class="btn-start" (click)="startGame()" *ngIf="!start">Начать</button>
+
+  <app-score [countSuccess]="countSuccess" [countError]="countError"></app-score>
 </div>
 
 <app-modal 

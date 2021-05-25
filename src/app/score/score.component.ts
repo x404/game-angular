@@ -10,9 +10,8 @@ export class ScoreComponent implements OnInit {
   @Input() countSuccess : number = 0;
   @Input() countError : number = 0;
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
 }

@@ -15,20 +15,17 @@ export class ModalComponent implements OnInit, OnChanges{
 
   @Output() onClose = new EventEmitter;
   data:{} = {isShowModal : false}
-  closeModal(){
+  closeModal(): void{
     this.onClose.emit(this.data);
   }
 
-  @Input() isShowModal : boolean = false;
-  @Input() countSuccess : number = 0;
-  @Input() countError : number = 0;
+  @Input() isShowModal  : boolean = false;
+  @Input() countSuccess : number  = 0;
+  @Input() countError   : number  = 0;
 
-  constructor() { 
+  constructor() {}
 
-  }
-
-  ngOnInit() {
-  }
+  ngOnInit(): void {}
 
   ngOnChanges() {  
    if (this.isShowModal){
@@ -37,6 +34,4 @@ export class ModalComponent implements OnInit, OnChanges{
      document.body.classList.remove("modal-open");
     }
   }
-
-
 }

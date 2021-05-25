@@ -6,31 +6,29 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  objOfCells:any = {};
-  clickCellFlag:boolean = false;
-  start:boolean = false;
-  errorDelayValue:boolean = false;
+  objOfCells: any = {};
+  clickCellFlag:   boolean = false;
+  start:           boolean = false;
+  errorDelayValue: boolean = false;
   
-  timer:any;
+  timer: any;
 
   currentId: number = -1;
-  prevId:number = -1; //?
+  prevId:    number = -1;
 
-  cellcounts: number = 100;
-  finishcount: number = 10;
-  delayValue: number = 10;
+  cellcounts  : number = 100;
+  finishcount : number = 10;
+  delayValue  : number = 10;
+  countSuccess: number = 0;
+  countError  : number = 0;  
   
   gameDiv = <HTMLElement>document.querySelector(".list");
-  
-  countSuccess:number = 0;
-  countError:number = 0;
 
   isShowModal: boolean = false;
 
   constructor() {
     this.init()
   }
-
 
   init() {
     if (this.cellcounts > 0) {
@@ -40,7 +38,6 @@ export class AppComponent {
     }
     //console.log(this.objOfCells)
   }
-
 
   /**
    * Method for create object
@@ -68,9 +65,9 @@ export class AppComponent {
       if (this.start) this.reset();
 
       // starting position
-      const arr:any = Object.entries(this.objOfCells);
-      const rnd:number = this.randomInteger(arr.length - 1);
-      const idx:number = arr[rnd][1].id;
+      const arr: any[] = Object.entries(this.objOfCells);
+      const rnd: number = this.randomInteger(arr.length - 1);
+      const idx: number = arr[rnd][1].id;
 
       // set active cell
       this.currentId = idx;
@@ -86,14 +83,13 @@ export class AppComponent {
     }
   }
 
-  onCloseModal(data: any ){
+  onCloseModal(data: any ): void{
     this.isShowModal = data.isShowModal;
     this.reset()
   }
 
   // check data (success and error cells) in Object
-  checkResult() {
-    //console.log('check result')
+  checkResult(): boolean {
     this.countSuccess = Object.entries(this.objOfCells).filter(
       (el: any) => el[1].success == true
     ).length;
@@ -110,16 +106,15 @@ export class AppComponent {
   }
 
   // random number
-  randomInteger(max:number) {
+  randomInteger(max: number): number {
     let rand = Math.floor(Math.random() * (max + 1));
     return rand;
   }
 
   // blink cell
-  blinkCell() {
+  blinkCell(): void {
         //  if cell was active and no pressed it
         if (!this.clickCellFlag) {
-          //console.log('error');
           this.updateStatusCellInObj(this.prevId, "error");
         }
     
@@ -141,13 +136,12 @@ export class AppComponent {
           // set active next cell in html
           this.currentId = id;
         }
-
         this.clickCellFlag = false;
   }
 
 
   // update Status Cell in Grid and update status in Object
-  updateCell(id : any) {
+  updateCell(id : any): void {
     this.clickCellFlag = true;
     this.updateStatusCellInObj(+id, "success");       
     if (this.checkResult()) {
@@ -159,14 +153,13 @@ export class AppComponent {
 
   // update status Cell in Object
   updateStatusCellInObj(id:number, key:string): void {
-    //console.log(id, key);
     this.objOfCells[id][key] = true;
   }
 
   reset(): void{
     for (let key in this.objOfCells) {
       this.objOfCells[key].success = false;
-      this.objOfCells[key].error = false;
+      this.objOfCells[key].error   = false;
     }
 
     this.currentId = this.prevId = -1;
