@@ -1,11 +1,13 @@
-<div class="modal">
-    <div class="modal-inner">
-      <p class="title">Счет:</p>
-      <div class="d-flex score">
-        <div>Вы: {{countSuccess}}</div>
-        <div>Компьютер: {{countError}}</div>
-      </div>
-      <button type="button" class="close">x</button>
+<ng-container *ngIf = "countError >= 10 || countSuccess >= 10">
+    <div class="modal">
+        <div class="modal-inner">
+        <p class="title">Счет:</p>
+        <div class="d-flex score">
+            <div>Вы: {{countSuccess}}</div>
+            <div>Компьютер: {{countError}}</div>
+        </div>
+        <button type="button" class="close">x</button>
+        </div>
     </div>
-</div>
-<div class="backdrop"></div>
+    <div class="backdrop"></div>
+</ng-container>

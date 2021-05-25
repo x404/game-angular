@@ -18,9 +18,9 @@ export class AppComponent {
 
   cellcounts: number = 100;
   finishcount: number = 10;
-  delayValue: number = 2000;
+  delayValue: number = 100;
   
-  gameDiv: any = document.querySelector(".list");
+  gameDiv = <HTMLElement>document.querySelector(".list");
   
   countSuccess:number = 0;
   countError:number = 0;
@@ -100,13 +100,9 @@ export class AppComponent {
     ).length;
     this.countError = Object.entries(this.objOfCells).filter((el: any) => el[1].error == true).length;
 
-    if (this.countSuccess == this.finishcount || this.countError == this.finishcount) {
+    if (this.countSuccess >= this.finishcount || this.countError >= this.finishcount) {
       console.log("%c- STOP GAME -", "color: red;font-weight:bold");
-
-      console.log('.. here show Modal');
-      //const newModal = new Modal(this.countSuccess, this.countError);
-      //newModal.show();
-
+      //console.log('.. here show Modal');
       clearInterval(this.timer);
       return false;
     }
