@@ -1,33 +1,3 @@
-* {
-  box-sizing: border-box;
-}
-
-:host {
-  --s: 50px;
-  --borderColor: #bfbfbf;
-  --activeColor: #f3f331;
-  --successColor: green;
-  --errorColor: red;
-}
-
-/*
-::ng-deep p {
-  margin: 0;
-}
-*/
-
-::ng-deep .d-none {
-  display: none;
-}
-
-::ng-deep .d-flex {
-  display: flex;
-}
-
-::ng-deep .flex-wrap {
-  flex-wrap: wrap;
-}
-
 .list {
   max-width: 500px;
   margin: 15px 0;
@@ -41,37 +11,32 @@
   transition: background-color 0.3s;
   height: var(--s);
   width: var(--s);
+
+  &:nth-child(10n + 1) {
+    border-left: 1px solid var(--borderColor);
+  }
+
+  &:nth-child(-n + 10) {
+    border-top: 1px solid var(--borderColor);
+  }
+
+  &-active {
+    background-color: var(--activeColor);
+    cursor: pointer;
+  }
+
+  &-success {
+    background-color: var(--successColor);
+  }
+
+  &-error {
+    background-color: var(--errorColor);
+  }
 }
 
-.cell:nth-child(10n + 1) {
-  border-left: 1px solid var(--borderColor);
-}
-
-.cell:nth-child(-n + 10) {
-  border-top: 1px solid var(--borderColor);
-}
-
-.cell-active {
-  background-color: var(--activeColor);
-  cursor: pointer;
-}
-
-.cell-success {
-  background-color: var(--successColor);
-}
-
-.cell-error {
-  background-color: var(--errorColor);
-}
 /* =/CELLS */
 
 /* = BUTTON */
-::ng-deep button {
-  background: none;
-  border: none;
-  cursor: pointer;
-}
-
 .btn-start {
   background-color: #009a00;
   color: #fff;
@@ -87,7 +52,6 @@
     box-shadow: 0 0 3px #000;
   }
 }
-
 /* =/BUTTON */
 
 /*=CONTROLS
