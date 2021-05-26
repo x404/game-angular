@@ -7,5 +7,7 @@
 		"path": "../games-oop-master"
 	}
 ],
-  "settings": {}
+"settings": {
+	"liveServer.settings.multiRootWorkspaceName": "game-angular"
+}
 }

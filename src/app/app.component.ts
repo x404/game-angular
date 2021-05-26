@@ -106,30 +106,30 @@ export class AppComponent {
 
   // blink cell
   blinkCell(): void {
-        //  if cell was active and no pressed it
-        if (!this.clickCellFlag) {
-          this.updateStatusCellInObj(this.prevId, "error");
-        }
-    
-        const arr: any = Object.entries(this.objOfCells).filter(
-          (el: any) => el[1].error == false && el[1].success == false
-        );
-    
-        if (arr.length === 0 || !this.checkResult()) {
-          clearInterval(this.timer);
-          return;
-        }
-    
-        // select random element from array
-        const rnd: number = this.randomInteger(arr.length - 1);
-        const id: number = arr[rnd][1].id;
-    
-        this.prevId = id;
-        if (this.countError < this.finishcount && this.countSuccess < this.finishcount) {
-          // set active next cell in html
-          this.currentId = id;
-        }
-        this.clickCellFlag = false;
+    //  if cell was active and no pressed it
+    if (!this.clickCellFlag) {
+      this.updateStatusCellInObj(this.prevId, "error");
+    }
+
+    const arr: any = Object.entries(this.objOfCells).filter(
+      (el: any) => el[1].error == false && el[1].success == false
+    );
+
+    if (arr.length === 0 || !this.checkResult()) {
+      clearInterval(this.timer);
+      return;
+    }
+
+    // select random element from array
+    const rnd: number = this.randomInteger(arr.length - 1);
+    const id: number = arr[rnd][1].id;
+
+    this.prevId = id;
+    if (this.countError < this.finishcount && this.countSuccess < this.finishcount) {
+      // set active next cell in html
+      this.currentId = id;
+    }
+    this.clickCellFlag = false;
   }
 
 
