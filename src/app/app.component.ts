@@ -7,7 +7,6 @@ import { DataService } from './services/data.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  //objOfCells: any = {};
   clickCellFlag:   boolean = false;
   start:           boolean = false;
   errorDelayValue: boolean = false;
@@ -17,7 +16,6 @@ export class AppComponent {
   currentId: number = -1;
   prevId:    number = -1;
 
-  //cellcounts  : number = 100;
   finishcount : number = 10;
   delayValue  : number = 1200;
   countSuccess: number = 0;
