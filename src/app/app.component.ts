@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { DataService } from './services/data.service';
 
 @Component({
   selector: 'app-root',
@@ -6,7 +7,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  objOfCells: any = {};
+  //objOfCells: any = {};
   clickCellFlag:   boolean = false;
   start:           boolean = false;
   errorDelayValue: boolean = false;
@@ -16,7 +17,7 @@ export class AppComponent {
   currentId: number = -1;
   prevId:    number = -1;
 
-  cellcounts  : number = 100;
+  //cellcounts  : number = 100;
   finishcount : number = 10;
   delayValue  : number = 1200;
   countSuccess: number = 0;
@@ -26,30 +27,12 @@ export class AppComponent {
 
   isShowModal: boolean = false;
 
-  constructor() {
-    this.init()
+  constructor(public appDataService: DataService) {
+    this.init();
   }
 
   init() {
-    if (this.cellcounts > 0) {
-      for (let i = 1; i <= this.cellcounts; i++) {
-       this.createObj(i);
-      }
-    }
-    //console.log(this.objOfCells)
-  }
-
-  /**
-   * Method for create object
-   */
-  createObj(id: number) {
-    const obj: { id: number; success: boolean; error: boolean} = {
-      id: id,
-      success: false,
-      error:  false    
-    };
-
-    this.objOfCells[id] = obj;
+    this.appDataService.generateData()
   }
 
   // start game
@@ -58,7 +41,7 @@ export class AppComponent {
       if (this.start) this.reset();
 
       // starting position
-      const arr: any[] = Object.entries(this.objOfCells);
+      const arr: any[] = Object.entries(this.appDataService.objOfCells);
       const rnd: number = this.randomInteger(arr.length - 1);
       const idx: number = arr[rnd][1].id;
 
@@ -83,10 +66,10 @@ export class AppComponent {
 
   // check data (success and error cells) in Object
   checkResult(): boolean {
-    this.countSuccess = Object.entries(this.objOfCells).filter(
+    this.countSuccess = Object.entries(this.appDataService.objOfCells).filter(
       (el: any) => el[1].success == true
     ).length;
-    this.countError = Object.entries(this.objOfCells).filter((el: any) => el[1].error == true).length;
+    this.countError = Object.entries(this.appDataService.objOfCells).filter((el: any) => el[1].error == true).length;
 
     if (this.countSuccess >= this.finishcount || this.countError >= this.finishcount) {
       console.log("%c- STOP GAME -", "color: red;font-weight:bold");
@@ -111,7 +94,7 @@ export class AppComponent {
       this.updateStatusCellInObj(this.prevId, "error");
     }
 
-    const arr: any = Object.entries(this.objOfCells).filter(
+    const arr: any = Object.entries(this.appDataService.objOfCells).filter(
       (el: any) => el[1].error == false && el[1].success == false
     );
 
@@ -146,13 +129,13 @@ export class AppComponent {
 
   // update status Cell in Object
   updateStatusCellInObj(id:number, key:string): void {
-    this.objOfCells[id][key] = true;
+    this.appDataService.updateData(id, key, true)
   }
 
   reset(): void{
-    for (let key in this.objOfCells) {
-      this.objOfCells[key].success = false;
-      this.objOfCells[key].error   = false;
+    for (let id in this.appDataService.objOfCells) {
+      this.appDataService.updateData(+id, 'success', false)
+      this.appDataService.updateData(+id, 'error', false)
     }
 
     this.currentId = this.prevId = -1;

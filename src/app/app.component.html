@@ -1,7 +1,7 @@
 <div class="content">
   <div class="d-flex flex-wrap list">
     <div
-      *ngFor="let item of objOfCells | keyvalue"
+      *ngFor="let item of appDataService.objOfCells | keyvalue"
       [attr.data-id] = "item.key"
       
       [ngClass]="{

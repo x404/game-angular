@@ -7,6 +7,7 @@ import { ErrorValuesPipe } from './pipes/error-values.pipe'
 import { SuccessValuesPipe } from './pipes/success-values.pipe';
 import { ModalComponent } from './modal/modal.component'
 import { FormsModule } from '@angular/forms';
+//import { DataService } from './services/data.service';
 
 @NgModule({
   declarations: [
