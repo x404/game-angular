@@ -1,4 +1,4 @@
-Link to online Game - (https://x404.github.io/game-angular/dist/game-angular/index.html)[https://x404.github.io/game-angular/dist/game-angular/index.html]
+Link to online Game - [https://x404.github.io/game-angular/dist/game-angular/index.html](https://x404.github.io/game-angular/dist/game-angular/index.html)
 
 # GameAngular
 
